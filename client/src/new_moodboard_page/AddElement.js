@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { randomIntFromInterval } from "../utils";
 import "./AddElement.css";
+import Popup from "../Components/Popup.jsx";
 
 const elementTypes = {
   imageUrl: "imageUrl",
@@ -10,6 +11,8 @@ const elementTypes = {
 const AddElement = (props) => {
   const [elementValue, setElementValue] = useState("");
   const [selectElementType, setSelect] = useState(elementTypes.imageUrl);
+  const [buttonPopup, setButtonPopup]= useState (false)
+
 
   const handleSelectElemType = (event) => {
     const value = event.target.value;
@@ -34,8 +37,16 @@ const AddElement = (props) => {
     setElementValue((elementValue) => value);
   };
 
+;
+
   return (
-    <div>
+    <div className="add-element">
+      <div className="pop-up">
+        <button onClick={()=> setButtonPopup(true)}>Open Editor</button>
+            <Popup trigger= {buttonPopup} setTrigger={setButtonPopup}>
+            <h3>photo edit pop up</h3>
+            </Popup>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="radioButtonAlign">
           <label className="formlabel2">
