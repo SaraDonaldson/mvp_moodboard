@@ -3,17 +3,23 @@
 /**
  * Module dependencies.
  */
-
+const listEndpoints = require("list-endpoints-express");
 var app = require("../app");
 var debug = require("debug")("moodboard:server");
 var http = require("http");
+
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "5001");
-app.set("port", port);
+// var port = normalizePort(process.env.PORT || "5001");
+// app.set("port", port);
+const port = process.env.PORT || "5005";
+app.listen(port,() => {
+console.table(listEndpoints(app))
+console.log("Server is running on port:", port)
+});
 
 /**
  * Create HTTP server.

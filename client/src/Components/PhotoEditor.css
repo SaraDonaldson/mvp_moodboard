@@ -1,0 +1,12 @@
+*, *::before, * ::after {
+    box-sizing: border-box;
+}
+
+.ph-ed-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: 
+        "image sidebar"
+        "slider sidenar";
+}
