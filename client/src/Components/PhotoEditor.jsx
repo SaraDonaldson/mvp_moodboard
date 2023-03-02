@@ -1,14 +1,14 @@
 import "./PhotoEditor.css";
 import Slider from "./Slider";
 
-export default function () {
+export default function PhotoEditor() {
 
 
 
     return (
         <div className="ph-ed-container">
             <div className="main-image"> </div>
-                <div className="photo-edit-side-bar">
+                <div className="ph-ed-sidebar">
 
 
 

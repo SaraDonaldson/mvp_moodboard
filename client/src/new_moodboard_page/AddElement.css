@@ -1,5 +1,25 @@
+
+
+pop-up-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+button{
+  max-width: 100px;
+  height: 50px;
+}
+
+.pop-up button{
+ border:none;
+}
+.background-pop-up button{
+  border: none;
+}
+
 .formlabel1 {
-  display: block;
+  /* display: block; */
+  display:grid;
   margin-block: 10px;
   font-size: 17px;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { randomIntFromInterval } from "../utils";
 import "./AddElement.css";
 import Popup from "../Components/Popup.jsx";
+import BackgroundPopup from "../Components/BackgroundEditor/BackgroundPopup.jsx";
 
 const elementTypes = {
   imageUrl: "imageUrl",
@@ -12,7 +13,7 @@ const AddElement = (props) => {
   const [elementValue, setElementValue] = useState("");
   const [selectElementType, setSelect] = useState(elementTypes.imageUrl);
   const [buttonPopup, setButtonPopup]= useState (false)
-
+  const [buttonBackgroundPopup, setButtonBackgroundPopup]= useState (false)
 
   const handleSelectElemType = (event) => {
     const value = event.target.value;
@@ -28,7 +29,8 @@ const AddElement = (props) => {
       selectElementType,
       positionTop,
       positionLeft
-    );
+    ); 
+    console.log("elements", elementValue)
     setElementValue("");
   };
 
@@ -41,12 +43,21 @@ const AddElement = (props) => {
 
   return (
     <div className="add-element">
+
+      <div className="pop-up-menu">
       <div className="pop-up">
         <button onClick={()=> setButtonPopup(true)}>Open Editor</button>
             <Popup trigger= {buttonPopup} setTrigger={setButtonPopup}>
             <h3>photo edit pop up</h3>
             </Popup>
       </div>
+      <div className="background-pop-up">
+        <button onClick={()=> setButtonBackgroundPopup(true)}>Choose Background</button>
+            <BackgroundPopup trigger= {buttonBackgroundPopup} setTrigger={setButtonBackgroundPopup}>
+            </BackgroundPopup>
+      </div>
+      </div>
+
       <form onSubmit={handleSubmit}>
         <div className="radioButtonAlign">
           <label className="formlabel2">

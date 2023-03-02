@@ -1,11 +1,13 @@
 import React from "react";
 import "./SelectedMoodboard.css";
 
-const SelectedMoodboard = (props) => {
-  console.log(props);
+const SelectedMoodboard = ({board1,backgroundStyle}) => {
+  console.log(board1);
+  const mystyle = backgroundStyle;
+  
   return (
-    <div className="displayArea">
-      {props.board1.map((element, index) => {
+    <div className='displayArea'  style={mystyle}>
+      {board1.map((element, index) => {
         if (element.type === "label") {
           return (
             <p

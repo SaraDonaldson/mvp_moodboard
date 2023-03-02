@@ -8,5 +8,33 @@
     grid-template-rows: 1fr auto;
     grid-template-areas: 
         "image sidebar"
-        "slider sidenar";
+        "slider sidebar";
+    background-color:bisque;
+    height: 90%;
+    width: 100%;
+
+}
+
+.main-image{
+    grid-area:image;
+    background-color: rgb(195, 228, 253);
+}
+.ph-ed-sidebar {
+    grid-area: sidebar;
+    background-color: grey;
+    width: 130px;
+}
+.slider-container{
+    grid-area: slider;
+    background-color: rgb(102, 253, 185);
+    margin-top: 2rem;
+    padding:2rem;
+}
+
+input { 
+    width:100% !important;
+    cursor: pointer;
+    margin:none;
+    line-height: none;
+    font-size: none;
 }
