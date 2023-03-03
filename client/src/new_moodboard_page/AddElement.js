@@ -9,11 +9,15 @@ const elementTypes = {
   label: "label",
 };
 
-const AddElement = (props) => {
+const AddElement = ({
+ selectedImage,
+ addElements
+}) => {
   const [elementValue, setElementValue] = useState("");
   const [selectElementType, setSelect] = useState(elementTypes.imageUrl);
   const [buttonPopup, setButtonPopup]= useState (false)
   const [buttonBackgroundPopup, setButtonBackgroundPopup]= useState (false)
+  
 
   const handleSelectElemType = (event) => {
     const value = event.target.value;
@@ -24,7 +28,7 @@ const AddElement = (props) => {
     event.preventDefault();
     const positionTop = randomIntFromInterval(0, 75);
     const positionLeft = randomIntFromInterval(0, 75);
-    props.addElements(
+    addElements(
       elementValue,
       selectElementType,
       positionTop,
@@ -47,13 +51,19 @@ const AddElement = (props) => {
       <div className="pop-up-menu">
       <div className="pop-up">
         <button onClick={()=> setButtonPopup(true)}>Open Editor</button>
-            <Popup trigger= {buttonPopup} setTrigger={setButtonPopup}>
+            <Popup trigger= {buttonPopup} 
+            setTrigger={setButtonPopup}
+            selectedImage={selectedImage}
+            >
             <h3>photo edit pop up</h3>
             </Popup>
       </div>
       <div className="background-pop-up">
         <button onClick={()=> setButtonBackgroundPopup(true)}>Choose Background</button>
-            <BackgroundPopup trigger= {buttonBackgroundPopup} setTrigger={setButtonBackgroundPopup}>
+            <BackgroundPopup
+             trigger= {buttonBackgroundPopup}
+              setTrigger={setButtonBackgroundPopup}
+              >
             </BackgroundPopup>
       </div>
       </div>

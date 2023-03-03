@@ -8,6 +8,7 @@ import "./NewMoodboard.css";
 const NewMoodboard = (props) => {
   let [elements, setElements] = useState([]);
   let [boardName, setBoardName] = useState("");
+  let [selectedImage, setSelectedImage] = useState();
 
   const handleAddElements = (value, type, top, left) => {
     setElements([...elements, { type, value, top, left }]);
@@ -31,6 +32,13 @@ const NewMoodboard = (props) => {
   const handleChangeBoardName = (event) => {
     setBoardName(event.target.value);
   };
+
+  function handleSelectedImage(imageUrl){
+    setSelectedImage(imageUrl);
+  }
+
+
+
   return (
     <div>
       <nav className="navbar">
@@ -43,10 +51,16 @@ const NewMoodboard = (props) => {
         <h3>New Moodboard</h3>
         <div className="row">
           <div className="col-9">
-            <SelectedMoodboard board1={elements} />
+            <SelectedMoodboard 
+            board1={elements} 
+            handleSelectedImage={handleSelectedImage}
+            />
           </div>
           <div className="col-3">
-            <AddElement addElements={handleAddElements} />
+            <AddElement 
+            addElements={handleAddElements}
+            selectedImage={selectedImage}
+             />
             <div>
               <button
                 className="changeButton"

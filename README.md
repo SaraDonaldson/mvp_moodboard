@@ -27,3 +27,6 @@ To run the database download docker and then the step 1.
 # Sara - Feature Extension
 ## popup windows
 Inspiration from - https://www.youtube.com/watch?v=i8fAO_zyFAM&ab_channel=TylerPotts
+
+## photo editor
+https://www.youtube.com/watch?v=J243ncoInNE&ab_channel=WebDevSimplified
