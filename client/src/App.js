@@ -31,7 +31,7 @@ function App() {
   };
 
   const addMoodboard = async (name, elements) => {
-    // console.log(name, elements)
+    console.log(name, elements)
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

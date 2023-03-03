@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { randomIntFromInterval } from "../utils";
 import "./AddElement.css";
-import Popup from "../Components/Popup.jsx";
+import Popup from "../Components/PictureEditor/Popup.jsx";
 import BackgroundPopup from "../Components/BackgroundEditor/BackgroundPopup.jsx";
 
 const elementTypes = {
