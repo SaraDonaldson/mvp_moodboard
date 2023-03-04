@@ -14,8 +14,9 @@ export default function BackgroundPopup ({
    
 
   return (trigger) ? (
+    <div className='Overlay' onClick={()=> setTrigger(false)}>
     <div className='bg-popup'>
-      <div className='bg-popup-inner'>
+      <div className='bg-popup-inner'onClick={(e)=> {e.stopPropagation()}}>
         <h1 className='bg-popup-h'>Choose Background</h1>
         <button className='close-btn'onClick={()=> setTrigger(false)}>x</button>
         {children}
@@ -23,7 +24,7 @@ export default function BackgroundPopup ({
        
            </BackgroundEditor>
       </div>
-     
+      </div>
     </div>
   ) : "";
 }
