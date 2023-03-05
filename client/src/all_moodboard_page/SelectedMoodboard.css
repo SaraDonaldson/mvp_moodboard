@@ -12,7 +12,24 @@
   margin: auto;
   max-height: 24%;
   max-width: 50%;
+  cursor:grab; 
 }
+div.mb-image {
+  overflow: hidden;
+  position: absolute;
+  margin: auto;
+  max-height: 24%;
+  max-width: 50%;
+  cursor:grab; 
+}
+
+p {
+  cursor:grab; 
+}
+
 .selected-image {
   border: 2px solid blue;
+}
+.react-resizable-handle {
+  border: 1px solid red;
 }
