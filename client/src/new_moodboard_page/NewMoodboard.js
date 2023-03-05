@@ -9,7 +9,9 @@ const NewMoodboard = (props) => {
   let [elements, setElements] = useState([]);
   let [boardName, setBoardName] = useState("");
   let [selectedImage, setSelectedImage] = useState();
-
+  let [selectedText, setSelectedText] = useState();
+  let [textPreviewStyle,  setTextPreviewStyle] = useState({});
+ 
   const handleAddElements = (value, type, top, left) => {
     setElements([...elements, { type, value, top, left }]);
   };
@@ -36,8 +38,20 @@ const NewMoodboard = (props) => {
   function handleSelectedImage(imageUrl){
     setSelectedImage(imageUrl);
   }
-
-
+  function handleSelectedText(textToEd){
+    setSelectedText(textToEd);
+  }
+  function textPreviewStylecb(styles){
+    let obj={}
+    if(styles.color){
+      obj.color=styles.color
+    }
+    if(styles.fontFamily){
+      obj.fontFamily=styles.fontFamily
+    }
+    console.log("NewMoodboard callback define. Obj:", obj, "styles: ", styles);
+    setTextPreviewStyle(obj);
+  }
 
   return (
     <div>
@@ -54,12 +68,17 @@ const NewMoodboard = (props) => {
             <SelectedMoodboard 
             board1={elements} 
             handleSelectedImage={handleSelectedImage}
+            handleSelectedText={handleSelectedText}
+            textPreviewStyle ={textPreviewStyle}
             />
           </div>
           <div className="col-3">
             <AddElement 
             addElements={handleAddElements}
             selectedImage={selectedImage}
+            selectedText={selectedText}
+            textPreviewStylecb={textPreviewStylecb}
+  
              />
             <div>
               <button

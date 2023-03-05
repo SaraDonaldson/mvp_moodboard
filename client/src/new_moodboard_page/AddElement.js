@@ -3,6 +3,7 @@ import { randomIntFromInterval } from "../utils";
 import "./AddElement.css";
 import Popup from "../Components/PictureEditor/Popup.jsx";
 import BackgroundPopup from "../Components/BackgroundEditor/BackgroundPopup.jsx";
+import TextEdPopup from "../Components/TextEditor/TextEdPopup";
 
 const elementTypes = {
   imageUrl: "imageUrl",
@@ -11,13 +12,15 @@ const elementTypes = {
 
 const AddElement = ({
  selectedImage,
- addElements
+ selectedText,
+ addElements,
+ textPreviewStylecb
 }) => {
   const [elementValue, setElementValue] = useState("");
   const [selectElementType, setSelect] = useState(elementTypes.imageUrl);
   const [buttonPopup, setButtonPopup]= useState (false)
   const [buttonBackgroundPopup, setButtonBackgroundPopup]= useState (false)
-  
+  const [buttonTextPopup, setButtonTextPopup]= useState (false)
 
   const handleSelectElemType = (event) => {
     const value = event.target.value;
@@ -58,6 +61,18 @@ const AddElement = ({
             <h3>photo edit pop up</h3>
             </Popup>
       </div>
+
+      <div className="Text-pop-up">
+        <button onClick={()=> setButtonTextPopup(true)}>Text Styles</button>
+            <TextEdPopup trigger= {buttonTextPopup} 
+            setTrigger={setButtonTextPopup}
+            selectedText={selectedText}
+            textPreviewStylecb={textPreviewStylecb}
+            >
+            <h3>Choose your text styles</h3>
+            </TextEdPopup>
+      </div>
+
       <div className="background-pop-up">
         <button onClick={()=> setButtonBackgroundPopup(true)}>Choose Background</button>
             <BackgroundPopup

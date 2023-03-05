@@ -5,10 +5,11 @@ import { Rnd } from "react-rnd";
 
 
 
-const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage}) => {
+const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage, handleSelectedText, textPreviewStyle}) => {
   console.log(board1);
   const mystyle = backgroundStyle;
   const [isSelected, setIsSelected]= useState(false);
+  const [textIsSelected, setTextIsSelected]= useState(false);
   const [sizeState, setSizeState] = useState({ width: 200,
     height: 200})
  
@@ -18,7 +19,10 @@ const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage}) => {
     setIsSelected(true);
   }
 
-
+  function handleSelectText(textToEd){
+    handleSelectedText(textToEd);
+    setTextIsSelected(true);
+  }
   return (
 
     
@@ -37,6 +41,7 @@ const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage}) => {
               height: 200,
             }}
             key={index}
+            onClick={() => {handleSelectText(`${element.value}`)}}
             >
    
             <p
@@ -46,8 +51,11 @@ const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage}) => {
                 top: `${element.top}%`,
                 left: `${element.left}%`,
                 zIndex: 5,
-                
+                color: textPreviewStyle.color,
+                fontFamily: textPreviewStyle.fontFamily
+
               }}
+              className={textIsSelected ? "selected-text" : ""} 
             >
               {element.value}
             </p>
