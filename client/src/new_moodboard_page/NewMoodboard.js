@@ -38,19 +38,21 @@ const NewMoodboard = (props) => {
   function handleSelectedImage(imageUrl){
     setSelectedImage(imageUrl);
   }
-  function handleSelectedText(textToEd){
-    setSelectedText(textToEd);
+  function handleSelectedText(textToEdObj){
+    setSelectedText(textToEdObj);
   }
-  function textPreviewStylecb(styles){
+  function textPreviewStylecb(styles, key){
     let obj={}
     if(styles.color){
       obj.color=styles.color
+      elements[key].color=styles.color
     }
     if(styles.fontFamily){
       obj.fontFamily=styles.fontFamily
+      elements[key].fontFamily=styles.fontFamily
     }
-    console.log("NewMoodboard callback define. Obj:", obj, "styles: ", styles);
-    setTextPreviewStyle(obj);
+    // console.log("NewMoodboard callback define. Obj:", obj, "styles: ", styles);
+    // setTextPreviewStyle(obj);
   }
 
   return (

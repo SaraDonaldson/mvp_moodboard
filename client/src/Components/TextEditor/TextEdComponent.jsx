@@ -5,16 +5,16 @@ import React from 'react'
 export default function TextEdComponent({selectedText, handleTextStylecb,textPreviewStylecb}) {
 let [changeColor, setChangeColor] = useState();
 let [changeFont, setChangeFont] = useState();
-let [textToEdit, setTextToEdit] = useState(selectedText);
+let [textToEdit, setTextToEdit] = useState(selectedText.text);
 
 useEffect(() => {
-    setTextToEdit(selectedText)
-  }, [selectedText])
+    setTextToEdit(selectedText.text)
+  }, [selectedText.text])
 
   useEffect(() => {
     let preview = {color: changeColor, fontFamily: changeFont};
     console.log("preview",preview);
-    textPreviewStylecb(preview)
+    textPreviewStylecb(preview, selectedText.key)
   }, [changeColor, changeFont])
 
 // function handleSave(){
@@ -41,12 +41,15 @@ function handleColor(e){
              <p className="preview-text" style={{
                 color: changeColor ? changeColor : 'black',
                 fontFamily:  changeFont? changeFont : 'initial',
-                }}> {textToEdit}</p>
+                }}> 
+                {textToEdit ? textToEdit : 'text'}
+                </p>
             </div>
 
                 <div className="text-ed-sidebar">
                 <label></label>
                 <select 
+                className="color-select"
                 id="color" 
                 name="color"
                 onChange={(e)=>handleColor(e)}>
@@ -73,14 +76,15 @@ function handleColor(e){
 
                 <label></label>
                 <select 
+                className="font-selector"
                 id="fonts" 
                 name="fonts"
                 onChange={(e)=>handleFont(e)}>
-                <option value="initial">Choose Font</option>   
-                <option value="monospace">monospace</option>
-                <option value="cursive">cursive</option>
-                <option value="Arial, Helvetica, sans-serif">Arial</option>
-                <option value="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact</option>
+                <option className= "initial"  value="initial">Choose Font</option>   
+                <option className= "monospace" value="monospace">monospace</option>
+                <option className= "cursive" value="cursive">cursive</option>
+                <option className= "Arial" value="Arial, Helvetica, sans-serif">Arial</option>
+                <option className= "Impact" value="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact</option>
                 </select>
                 {/* <button  className="save-btn" type="button" onClick={() => {handleSave()}}>Save</button>  */}
                 </div>

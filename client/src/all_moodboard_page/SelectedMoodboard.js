@@ -6,28 +6,38 @@ import { Rnd } from "react-rnd";
 
 
 const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage, handleSelectedText, textPreviewStyle}) => {
-  console.log(board1);
+  console.log("elements",board1);
   const mystyle = backgroundStyle;
   const [isSelected, setIsSelected]= useState(false);
   const [textIsSelected, setTextIsSelected]= useState(false);
   const [sizeState, setSizeState] = useState({ width: 200,
     height: 200})
- 
+ const [elementArray, setElementArray]= useState([])
+
+//  [
+//   {
+//     elementId: index,
+//     styles:{}
+//   }
+//  ]
   
   function handleSelect(imageUrl){
     handleSelectedImage(imageUrl);
     setIsSelected(true);
   }
 
-  function handleSelectText(textToEd){
-    handleSelectedText(textToEd);
-    setTextIsSelected(true);
+  function handleSelectText(textToEd, index){
+    handleSelectedText({text:textToEd, key:index });
+    setTextIsSelected(index);
   }
   return (
 
     
 
-    <div className='displayArea'  style={mystyle}>
+    <div 
+    className='displayArea'  
+    style={mystyle}
+    >
 
      {board1.map((element, index) => {
         if (element.type === "label") {
@@ -41,7 +51,7 @@ const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage, handleS
               height: 200,
             }}
             key={index}
-            onClick={() => {handleSelectText(`${element.value}`)}}
+            onClick={() => {handleSelectText(`${element.value}`,index)}}
             >
    
             <p
@@ -51,11 +61,12 @@ const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage, handleS
                 top: `${element.top}%`,
                 left: `${element.left}%`,
                 zIndex: 5,
-                color: textPreviewStyle.color,
-                fontFamily: textPreviewStyle.fontFamily
+                
+                color: element.color? element.color : "black",
+                fontFamily: element.fontFamily? element.fontFamily : "initial",
 
               }}
-              className={textIsSelected ? "selected-text" : ""} 
+              className={textIsSelected === index ? "selected-text" : ""} 
             >
               {element.value}
             </p>

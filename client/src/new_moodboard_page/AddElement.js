@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { randomIntFromInterval } from "../utils";
 import "./AddElement.css";
 import Popup from "../Components/PictureEditor/Popup.jsx";
@@ -21,11 +21,32 @@ const AddElement = ({
   const [buttonPopup, setButtonPopup]= useState (false)
   const [buttonBackgroundPopup, setButtonBackgroundPopup]= useState (false)
   const [buttonTextPopup, setButtonTextPopup]= useState (false)
+  const [textEdIsDisabled, SetTextEdIsDisabled]= useState(true);
+  const [phEdIsDisabled, SetPhEdIsDisabled]= useState(true);
+  
+
+ useEffect(() => {
+  if (selectedText){
+    SetTextEdIsDisabled(false)
+  }
+}, [selectedText])
+ 
+useEffect(() => {
+  if (selectedImage){
+    SetPhEdIsDisabled(false)
+  }
+}, [selectedImage])
+ 
+
+
+
 
   const handleSelectElemType = (event) => {
     const value = event.target.value;
     setSelect((selectElementType) => value);
   };
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -53,7 +74,9 @@ const AddElement = ({
 
       <div className="pop-up-menu">
       <div className="pop-up">
-        <button onClick={()=> setButtonPopup(true)}>Open Editor</button>
+        <button 
+            disabled={phEdIsDisabled}
+            onClick={()=> setButtonPopup(true)}>Open Editor</button>
             <Popup trigger= {buttonPopup} 
             setTrigger={setButtonPopup}
             selectedImage={selectedImage}
@@ -61,9 +84,11 @@ const AddElement = ({
             <h3>photo edit pop up</h3>
             </Popup>
       </div>
-
+     
       <div className="Text-pop-up">
-        <button onClick={()=> setButtonTextPopup(true)}>Text Styles</button>
+        <button 
+            disabled={textEdIsDisabled}  
+            onClick={()=> setButtonTextPopup(true)}>Text Styles</button>
             <TextEdPopup trigger= {buttonTextPopup} 
             setTrigger={setButtonTextPopup}
             selectedText={selectedText}
