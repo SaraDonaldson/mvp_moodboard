@@ -1,23 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./backgroundEditor.css"
 import BgColorPicker from "./BgColorPicker";
 import BgGradients from "./BgGradients";
 import BgImage from "./BgImage";
-import BgTextures from "./BgTextures";
+
 
 export default function PhotoEditor() {
 let [backgroundType, setBackgroundType] = useState();
 let [backgroundValue, setBackgroundValue] = useState();
 let [colorIsActive, setColorIsActive] =useState(false);
 let [gradientIsActive, setGradientIsActive] =useState(false);
-let [textureIsActive, setTextureIsActive] =useState(false);
 let [bgImageIsActive, setBgImageIsActive] =useState(false);
+
 
 
 function resetMenu(){
     setColorIsActive(false);
     setGradientIsActive(false);
-    setTextureIsActive(false);
     setBgImageIsActive(false);
 }
 
@@ -33,10 +32,6 @@ function handleBgMenu(bgType){
     handleBgType(BgTypeString);
     }else if(bgType === "gradient"){
         setGradientIsActive(true);
-    let BgTypeString ="backgroundImage";
-    handleBgType(BgTypeString);
-     }else if(bgType === "texture"){
-        setTextureIsActive(true);
     let BgTypeString ="backgroundImage";
     handleBgType(BgTypeString);
     }else if (bgType === "image") {
@@ -55,21 +50,25 @@ function handleBoardBackground(){
 
 }
 
+function handleBgColPick(color){
+    setBackgroundType("color")
+    setBackgroundValue(color)
+    console.log("backgroundValue: " , backgroundValue);
+  }
 
     return (
         <div className="bg-ed-container">
             <div className="bg-ed-grid">
             
            { (colorIsActive)
-            ? <BgColorPicker></BgColorPicker>
+            ? <BgColorPicker
+            handleBgColPick={handleBgColPick}
+            >
+            </BgColorPicker>
             : " "
            }
             { (gradientIsActive)
             ? <BgGradients></BgGradients>
-            : " "
-           }
-            { (textureIsActive)
-            ? <BgTextures></BgTextures>
             : " "
            }
             { (bgImageIsActive)
@@ -82,7 +81,6 @@ function handleBoardBackground(){
                 <div className="bg-ed-sidebar">
                 <button className= {`${colorIsActive ? 'active': " "}`} onClick={() => {handleBgMenu("color")}}>Colour</button>
                 <button className={`${gradientIsActive ? 'active': " "}`}  onClick={() => {handleBgMenu("gradient")}}>Gradient</button>
-                <button className= {`${textureIsActive ? 'active': " "}`} onClick={() => {handleBgMenu("texture")}}>Texture</button>
                 <button  className={`${bgImageIsActive ? 'active': " "}`}  onClick={() => {handleBgMenu("image")}}>Image</button>
                 <button  className="save-btn" type="button" onClick={() => {handleSave()}}>Save</button> 
                 </div>

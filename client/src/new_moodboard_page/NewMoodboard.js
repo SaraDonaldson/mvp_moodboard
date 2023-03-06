@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import AddElement from "./AddElement";
 import SelectedMoodboard from "../all_moodboard_page/SelectedMoodboard";
 import { randomIntFromInterval } from "../utils";
@@ -10,7 +10,8 @@ const NewMoodboard = (props) => {
   let [boardName, setBoardName] = useState("");
   let [selectedImage, setSelectedImage] = useState();
   let [selectedText, setSelectedText] = useState();
-  let [textPreviewStyle,  setTextPreviewStyle] = useState({});
+  let [updateText,  setUpdateText] = useState(false);
+  let [textStyles, setTextStyles]= useState()
  
   const handleAddElements = (value, type, top, left) => {
     setElements([...elements, { type, value, top, left }]);
@@ -24,6 +25,51 @@ const NewMoodboard = (props) => {
     });
     setElements(changedElements);
   };
+
+  // useEffect(() => {
+  //   if(updateText){
+  //   ResetTextStyle(textStyles)
+  //   }
+  // }, [updateText,textStyles])
+  
+
+    // function ResetTextStyle(obj){
+    //   let newObj={}
+    //   if(obj.color){
+    //     newObj.color=obj.color
+    //     elements[obj.key].color=obj.color
+    //   }
+    //   if(obj.fontFamily){
+    //     newObj.fontFamily=obj.fontFamily
+    //     elements[obj.key].fontFamily=obj.fontFamily
+    //   }
+    // }
+
+  function textPreviewStylecb(styles, key){
+    setUpdateText(true);
+    let obj={}
+    if(styles.color){
+      obj.color=styles.color
+      elements[key].color=styles.color
+    }
+    if(styles.fontFamily){
+      obj.fontFamily=styles.fontFamily
+      elements[key].fontFamily=styles.fontFamily
+    }
+    // console.log("NewMoodboard callback define. Obj:", obj, "styles: ", styles);
+    // setTextPreviewStyle(obj);
+  }
+
+  // function textPreviewStylecb(styles, key){
+  //   setUpdateText(true);
+  //   let obj = styles;
+  //   obj.key=key;
+  //   setTextStyles(obj);
+    
+  //   // console.log("NewMoodboard callback define. Obj:", obj, "styles: ", styles);
+  //   // setTextPreviewStyle(obj);
+  // }
+
 
   const handleSubmit = () => {
     props.addMoodboardCb(boardName, elements);
@@ -41,19 +87,9 @@ const NewMoodboard = (props) => {
   function handleSelectedText(textToEdObj){
     setSelectedText(textToEdObj);
   }
-  function textPreviewStylecb(styles, key){
-    let obj={}
-    if(styles.color){
-      obj.color=styles.color
-      elements[key].color=styles.color
-    }
-    if(styles.fontFamily){
-      obj.fontFamily=styles.fontFamily
-      elements[key].fontFamily=styles.fontFamily
-    }
-    // console.log("NewMoodboard callback define. Obj:", obj, "styles: ", styles);
-    // setTextPreviewStyle(obj);
-  }
+
+
+  
 
   return (
     <div>
@@ -71,7 +107,7 @@ const NewMoodboard = (props) => {
             board1={elements} 
             handleSelectedImage={handleSelectedImage}
             handleSelectedText={handleSelectedText}
-            textPreviewStyle ={textPreviewStyle}
+            // textPreviewStyle ={textPreviewStyle}
             />
           </div>
           <div className="col-3">

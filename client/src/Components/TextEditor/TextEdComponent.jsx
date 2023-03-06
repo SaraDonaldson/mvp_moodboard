@@ -2,7 +2,7 @@ import "./TextEdComponent.css"
 import { useState, useEffect } from "react";
 import React from 'react'
 
-export default function TextEdComponent({selectedText, handleTextStylecb,textPreviewStylecb}) {
+export default function TextEdComponent({selectedText,textPreviewStylecb}) {
 let [changeColor, setChangeColor] = useState();
 let [changeFont, setChangeFont] = useState();
 let [textToEdit, setTextToEdit] = useState(selectedText.text);

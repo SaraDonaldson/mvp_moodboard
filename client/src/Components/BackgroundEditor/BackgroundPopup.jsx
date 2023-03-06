@@ -10,17 +10,25 @@ export default function BackgroundPopup ({
 
     let [backgroundType, setBackgroundType] = useState();
     let [backgroundValue, setBackgroundValue] = useState();
-
+    
+    // function handleBgColPick(color){
+    //   setBackgroundType("color")
+    //   setBackgroundValue(color)
+    // }
    
 
   return (trigger) ? (
     <div className='Overlay' onClick={()=> setTrigger(false)}>
-    <div className='bg-popup'>
+    <div
+     className='bg-popup'
+   
+     >
       <div className='bg-popup-inner'onClick={(e)=> {e.stopPropagation()}}>
-        <h1 className='bg-popup-h'>Choose Background</h1>
         <button className='close-btn'onClick={()=> setTrigger(false)}>x</button>
         {children}
-        <BackgroundEditor>
+        <BackgroundEditor  
+      
+        >
        
            </BackgroundEditor>
       </div>

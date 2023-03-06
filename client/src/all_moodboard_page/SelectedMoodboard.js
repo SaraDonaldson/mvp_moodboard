@@ -21,15 +21,42 @@ const SelectedMoodboard = ({board1,backgroundStyle, handleSelectedImage, handleS
 //   }
 //  ]
   
+/* ------- unselect
+click new item - select text can be assigned false 
+inside of handle select
+
+text is selected assigned index on click otherwise false (useState)
+
+On click off - trigger? overlay excluding items (stopPropogation)
+or trigger set to area not including items set to select to false on click?
+can't do this because item already has an on click
+can I pass multiple functions in an onClick?
+  trigger= {textIsSelected} 
+  setTrigger={setTextIsSelected}
+  e.stopPropogation();
+  onClick={()=> setTrigger(false)}
+*/
+
   function handleSelect(imageUrl){
     handleSelectedImage(imageUrl);
     setIsSelected(true);
   }
 
-  function handleSelectText(textToEd, index){
+  function handleSelectText(textToEd, index,e){
     handleSelectedText({text:textToEd, key:index });
+    setTextIsSelected(false);
     setTextIsSelected(index);
+
+  
   }
+
+  function handleUnselect(){
+    //for onClick div 'display Area'
+    // if area contains element
+    // then ignore or "return"
+    //else set TextSelect & ImgSelect to false
+  }
+
   return (
 
     

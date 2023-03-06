@@ -8,7 +8,15 @@ export default function TextEdPopup({
     selectedText,
     children,
     textPreviewStylecb
-  }) {
+  }) 
+  {
+
+  
+function closeTextEd (){
+  setTrigger(false);
+  
+}
+
     return (trigger) ? (
         <div className='Overlay' onClick={()=> setTrigger(false)}>
         <div className='text-ed-popup'>
