@@ -1,13 +1,13 @@
 
-export default async function postElement (name, elements) {
-    console.log(name, elements)
+export default async function postElement (mbId, ) {
+    
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, elements }),
     };
     try {
-      let response = await fetch("/moodboards", options);
+      let response = await fetch("/moodboards/mbId", options);
       if (response.ok) {
         let mbResponse = await response.json();
         // await getAllMoodboard();
