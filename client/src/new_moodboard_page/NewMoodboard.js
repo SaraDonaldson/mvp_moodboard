@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import AddElement from "./AddElement";
 import SelectedMoodboard from "../all_moodboard_page/SelectedMoodboard";
-import { randomIntFromInterval } from "../utils";
+import { randomIntFromInterval } from "../Utils/utils";
 import { Link } from "react-router-dom";
 import "./NewMoodboard.css";
 

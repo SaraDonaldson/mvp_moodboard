@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { randomIntFromInterval } from "../utils";
+import { randomIntFromInterval } from "../Utils/utils";
 import "./AddElement.css";
 import Popup from "../Components/PictureEditor/Popup.jsx";
 import BackgroundPopup from "../Components/BackgroundEditor/BackgroundPopup.jsx";

@@ -54,4 +54,22 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+router.put("/:id/:eid", async (req, res) => {
+  const moodboardId = req.params.id;
+  const elementId = req.params.eid;
+  const {column, data} = req.body;
+  let sql = `
+      UPDATE elements SET '${column}'= '${data}'
+      WHERE id = ${elementId}
+     `;
+  try {
+    await db(sql);
+    let result = await db(`SELECT m.*, e.* FROM moodboards AS m RIGHT JOIN elements AS e ON m.id = e.boardId WHERE m.id = ${moodboardId}`);
+    res.send(result.data);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
 module.exports = router;
