@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { redirect } from 'react-router-dom';
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
 
 
@@ -8,6 +8,8 @@ function LoginForm() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState(""); 
+    const navigate = useNavigate();
+
     // function validateForm() {
     //   return email.length > 0 && password.length > 0;
   
@@ -16,7 +18,7 @@ function LoginForm() {
     function handleSubmit(event) {
   
     //   event.preventDefault();
-    return redirect("/dashboard")
+    return navigate("/dashboard");
   
     }
   return (
