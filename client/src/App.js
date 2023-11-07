@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import HomePage from "./home_page/HomePage";
+// import HomePage from "./home_page/HomePage";
 import { Routes, Route, Link } from "react-router-dom";
 import Moodboards from "./all_moodboard_page/Moodboards";
 import NewMoodboard from "./new_moodboard_page/NewMoodboard";
+import Login from "./Pages/login";
 
 function App() {
   let [moodboards, setMoodboards] = useState([]);
@@ -52,7 +53,7 @@ function App() {
     <div className="App" >
       
       <Routes>
-        <Route path="*" element={<HomePage moodboards={moodboards} />}></Route>
+        {/* <Route path="*" element={<HomePage moodboards={moodboards} />}></Route> */}
         <Route
           path="/moodboards"
           element={
@@ -67,6 +68,8 @@ function App() {
           path="/new_moodboard"
           element={<NewMoodboard board={board} addMoodboardCb={addMoodboard} />}
         ></Route>
+        <Route path="/" element={<Login />}/>
+
       </Routes>
     </div>
   );
