@@ -4,7 +4,8 @@ import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import Moodboards from "./all_moodboard_page/Moodboards";
 import NewMoodboard from "./new_moodboard_page/NewMoodboard";
-import Login from "./Pages/login";
+import Login from "./Pages/Login";
+import UserDashboard from "./Pages/UserDashboard";
 
 function App() {
   let [moodboards, setMoodboards] = useState([]);
@@ -54,6 +55,9 @@ function App() {
       
       <Routes>
         {/* <Route path="*" element={<HomePage moodboards={moodboards} />}></Route> */}
+       
+        <Route path="/" element={<Login />}/>
+        <Route path="/dashboard" element={<UserDashboard />}/>
         <Route
           path="/moodboards"
           element={
@@ -68,7 +72,7 @@ function App() {
           path="/new_moodboard"
           element={<NewMoodboard board={board} addMoodboardCb={addMoodboard} />}
         ></Route>
-        <Route path="/" element={<Login />}/>
+       
 
       </Routes>
     </div>
