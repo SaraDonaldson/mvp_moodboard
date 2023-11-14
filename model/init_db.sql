@@ -1,6 +1,36 @@
 DROP TABLE IF EXISTS `elements`;
 DROP TABLE IF EXISTS `moodboards`;
+DROP TABLE IF EXISTS 'users';
+DROP TABLE IF EXISTS 'userCredentials'
+DROP TABLE IF EXISTS 'userBoards'
 
+
+CREATE TABLE users(
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+   'firstName' VARCHAR(255) NOT NULL,
+   'secondName' VARCHAR(255) NOT NULL,
+   'email' VARCHAR(255) NOT NULL,
+    UNIQUE ('email')
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE userCredentials(
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+   'userId' INT NOT NULL,
+   'password' VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY ('userId') REFERENCES users(id)
+);
+
+CREATE TABLE userBoards(
+     id MEDIUMINT NOT NULL AUTO_INCREMENT,
+     'userId'  INT NOT NULL,
+     'boardId'  INT NOT NULL,
+    
+     PRIMARY KEY (id),
+     FOREIGN KEY ('userId') REFERENCES users(id),
+     FOREIGN KEY ('boardId') REFERENCES `moodboards`(`id`)
+);
 
 CREATE TABLE `moodboards`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
