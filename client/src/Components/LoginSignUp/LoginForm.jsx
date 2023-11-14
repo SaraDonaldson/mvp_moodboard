@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import validateLogin from "../../Utils/loginUser";
 
 
 
@@ -10,17 +11,27 @@ function LoginForm() {
     const [password, setPassword] = useState(""); 
     const navigate = useNavigate();
 
-    // function validateForm() {
-    //   return email.length > 0 && password.length > 0;
-  
-    // }
-  
-    function handleSubmit(event) {
-  
-    //   event.preventDefault();
-    return navigate("/dashboard");
+    function validateForm() {
+      return email.length > 0 && password.length > 0;
   
     }
+  
+   async function handleSubmit(event) {
+      event.preventDefault();
+       let loginProcess = await validateLogin(email, password)
+      if(loginProcess){
+       
+        // save user id to local
+        localStorage.setItem("userId", JSON.stringify(loginProcess.userId));
+
+        return navigate("/dashboard");
+      }
+      else{
+        console.log("error logging in")
+      }
+    }
+
+
   return (
     <div className='login-form'>
         
@@ -45,7 +56,7 @@ function LoginForm() {
 
 
 <button className="form-button" type="submit" 
-// disabled={!validateForm()}
+disabled={!validateForm()}
 >
 
   Login
