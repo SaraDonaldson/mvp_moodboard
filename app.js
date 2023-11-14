@@ -5,6 +5,8 @@ var logger = require("morgan");
 
 
 var moodboardsRouter = require("./routes/moodboards");
+var usersRouter = require("./routes/users");
+
 
 const cors = require("cors");
 
@@ -15,8 +17,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/moodboards", moodboardsRouter);
+app.use("/users", usersRouter);
 
 module.exports = app;
