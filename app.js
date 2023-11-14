@@ -6,7 +6,7 @@ var logger = require("morgan");
 
 var moodboardsRouter = require("./routes/moodboards");
 var usersRouter = require("./routes/users");
-
+var userCredentials = require("./routes/userCredentials");
 
 const cors = require("cors");
 
@@ -21,5 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/moodboards", moodboardsRouter);
 app.use("/users", usersRouter);
+app.use("/userCredentials", userCredentials);
 
 module.exports = app;
