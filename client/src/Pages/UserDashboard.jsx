@@ -1,8 +1,16 @@
 import React from 'react'
 
+
+
+
+
 function UserDashboard() {
+
+let userId= localStorage.getItem("userId")
+
+
   return (
-    <div>UserDashboard</div>
+    <div>UserDashboard {userId}</div>
   )
 }
 
