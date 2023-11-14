@@ -18,29 +18,40 @@ router.get("/", async (req, res, next) => {
 
 /*------------------------------------------------------------------------------------ */
 // create user
-router.post("/", async (req, res) => {
-    const {
-        firstName, 
-        secondName, 
-        email
-    } = req.body;
+// router.post("/", async (req, res) => {
+//     const {
+//         firstName, 
+//         secondName, 
+//         email
+//     } = req.body;
+  
+//     try {
+//       let sql= `INSERT INTO users (firstName, secondName, email) VALUES ("${firstName}","${secondName}", "${email}" )`;
+//       await db(sql);
+//       let results = await db(`select * from users`)
+  
+//       res.send(results.data);
+//     } catch (error) {
+//       res.status(500).send({ error: error.message });
+//     }
+//   });
+
+
+/*------------------------------------------------------------------------------------ */
+// get user by id
+router.get("/:id", async (req, res) => {
+    const id = req.params.id;
   
     try {
-      //creating a new board
-      let sql= `INSERT INTO users (firstName, secondName, email) VALUES ("${firstName}","${secondName}", "${email}" )`;
-      await db(sql);
-      //getting the id of the new board
-      let results = await db(`select * from users`)
+      let sql= `SELECT * FROM users WHERE id = ${id}`;
+      
+      let results = await db(sql)
   
       res.send(results.data);
     } catch (error) {
       res.status(500).send({ error: error.message });
     }
   });
-
-
-
-
 
 /*------------------------------------------------------------------------------------ */
 // delete user id
