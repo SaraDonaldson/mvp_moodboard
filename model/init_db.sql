@@ -1,60 +1,58 @@
 DROP TABLE IF EXISTS `elements`;
-DROP TABLE IF EXISTS `moodboards`;
-DROP TABLE IF EXISTS 'users';
-DROP TABLE IF EXISTS 'userCredentials'
-DROP TABLE IF EXISTS 'userBoards'
+
+DROP TABLE IF EXISTS userBoards;
+DROP TABLE IF EXISTS userCredentials;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS moodboards;
 
 
-CREATE TABLE users(
-    id MEDIUMINT NOT NULL AUTO_INCREMENT,
-   'firstName' VARCHAR(255) NOT NULL,
-   'secondName' VARCHAR(255) NOT NULL,
-   'email' VARCHAR(255) NOT NULL,
-    UNIQUE ('email')
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    firstName VARCHAR(255) NOT NULL,
+    secondName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    UNIQUE (email),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE userCredentials(
-    id MEDIUMINT NOT NULL AUTO_INCREMENT,
-   'userId' INT NOT NULL,
-   'password' VARCHAR(255) NOT NULL,
+CREATE TABLE userCredentials (
+    id INT NOT NULL AUTO_INCREMENT,
+    userId INT NOT NULL,
+    password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY ('userId') REFERENCES users(id)
+    FOREIGN KEY (userId) REFERENCES users(id)
 );
 
-CREATE TABLE userBoards(
-     id MEDIUMINT NOT NULL AUTO_INCREMENT,
-     'userId'  INT NOT NULL,
-     'boardId'  INT NOT NULL,
-    
+CREATE TABLE moodboards (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE userBoards (
+     id INT NOT NULL AUTO_INCREMENT,
+     userId  INT NOT NULL,
+     boardId  INT NOT NULL,
      PRIMARY KEY (id),
-     FOREIGN KEY ('userId') REFERENCES users(id),
-     FOREIGN KEY ('boardId') REFERENCES `moodboards`(`id`)
-);
-
-CREATE TABLE `moodboards`(
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(255) NOT NULL,
-    PRIMARY KEY (`id`)
+     FOREIGN KEY (userId) REFERENCES users(id),
+     FOREIGN KEY (boardId) REFERENCES moodboards(id)
 );
 
 CREATE TABLE `elements`(
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `boardId` INT UNSIGNED NOT NULL,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    boardId INT NOT NULL,
     `value` VARCHAR(255) NOT NULL,
     `type` VARCHAR(255) NOT NULL,
     `top` INT UNSIGNED NOT NULL,
     `left` INT UNSIGNED NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY(`boardId`) REFERENCES `moodboards`(`id`)
+    PRIMARY KEY (id),
+    FOREIGN KEY(boardId) REFERENCES moodboards(id)
 );
-
-INSERT INTO `moodboards`(id, name)
+INSERT INTO moodboards (id, name)
 VALUES
 (1, 'Road Trip - 2022'),
 (2, 'Museum, about people');
-
-INSERT INTO `elements`(id, boardId, value, type, top, `left`)
+INSERT INTO elements (id, boardId, value, type, top, `left`)
 VALUES
 (1, 1, 'https://freight.cargo.site/t/original/i/E979803984034356783031303274496/000013.JPG', 'image', 50, 30),
 (2, 1, 'https://freight.cargo.site/t/original/i/I991003138646051068383544213504/Photo13.jpg', 'image', 37, 74),
@@ -75,3 +73,15 @@ VALUES
 (17, 2, 'P. E. O. P. L. E.', 'label', 46, 23),
 (18, 2, 'comunity', 'label', 47, 18),
 (19, 2, 'individual', 'label', 57, 63);
+
+INSERT INTO users (id, firstName, secondName, email)
+VALUES
+(1, 'Jason', 'Muffins', 'jmuff@email.com'),
+(2, 'Amy', 'Biscuit', 'abiscuit@email.com'),
+(3, 'super', 'Banana-Fritter', 'superbf@email.com');
+
+INSERT INTO userCredentials (id, userId, password)
+VALUES
+(1, 1, "bananaMuffins"),
+(2, 2, "biscuitMayhem"),
+(3, 3, "superduper");
