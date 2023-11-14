@@ -30,3 +30,13 @@ Inspiration from - https://www.youtube.com/watch?v=i8fAO_zyFAM&ab_channel=TylerP
 
 ## photo editor
 https://www.youtube.com/watch?v=J243ncoInNE&ab_channel=WebDevSimplified
+
+
+## "Drag & Resize"
+Move items around on the moodboard and resize them - using package from React-RND
+
+## Login/Sign up 
+- Login page and sign up page
+- Bcrypt login on express server 
+- sign up with local storage and sessions
+
